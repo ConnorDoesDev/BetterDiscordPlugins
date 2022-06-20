@@ -37,8 +37,8 @@ module.exports = !global.ZeresPluginLibrary
     ? class {
         constructor() { this._config = config; }
         load() {
-            BdApi.showConfirmationModal("Library plugin is needed", `The library plugin needed for ${config.info.name} is missing. Please click Download Now to install it.`, {
-                confirmText: "Download",
+            BdApi.showConfirmationModal("Library plugin is needed", `The library plugin needed for ${config.info.name} is missing. Please click Install to install it.`, {
+                confirmText: "Install",
                 cancelText: "Cancel",
                 onConfirm: () => {
                     request.get("https://rauenzi.github.io/BDPluginLibrary/release/0PluginLibrary.plugin.js", (error, response, body) => {

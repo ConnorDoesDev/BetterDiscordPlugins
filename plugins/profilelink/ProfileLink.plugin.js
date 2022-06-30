@@ -27,9 +27,9 @@ const config = {
         github_raw: "https://raw.githubusercontent.com/ConnorDoesDev/BetterDiscordPlugins/dev/plugins/profilelink/ProfileLink.plugin.js",
     },
     changelog: [{
-        title: "squished that performance issue",
-        type: "fixed",
-        items: ["when clicking, cpu usage doesnt spike anymore. i dont even know why that happened"],
+        title: "Removed Guild Link",
+        type: "removed",
+        items: ["We removed the Guild Media Linking feature as it was making Discord crash for some users."],
     }]
 };
 
@@ -37,8 +37,8 @@ module.exports = !global.ZeresPluginLibrary
     ? class {
         constructor() { this._config = config; }
         load() {
-            BdApi.showConfirmationModal("Library plugin is needed", `The library plugin needed for ${config.info.name} is missing. Please click Install to install it.`, {
-                confirmText: "Install",
+            BdApi.showConfirmationModal("Library plugin is needed", `The library plugin needed for ${config.info.name} is missing. Please click Download Now to install it.`, {
+                confirmText: "Download",
                 cancelText: "Cancel",
                 onConfirm: () => {
                     request.get("https://rauenzi.github.io/BDPluginLibrary/release/0PluginLibrary.plugin.js", (error, response, body) => {
@@ -64,6 +64,7 @@ module.exports = !global.ZeresPluginLibrary
                document.removeEventListener("click", this.link)
             }
             link({target}) {
+                console.log(target)
                if (target.style.backgroundImage && target.style.backgroundImage.includes("banner")) {
                    let url = target.style.backgroundImage
                    url = url.substring(4, url.length-1).replace(/["']/g, "")
